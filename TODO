@@ -1,0 +1,16 @@
+Choose A simple endpoint to make active
+    Add unit test for the endpoint
+
+    Set up User Entity
+        -Java Class
+        -SQL Table
+    Set up Article Entity
+        -Java Class
+        -SQL Table
+
+
+
+
+// DONE
+Docker set up postgres db for realworld
+Flyway set up for migrations
