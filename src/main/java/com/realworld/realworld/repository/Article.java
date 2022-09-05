@@ -95,12 +95,12 @@ public class Article {
         this.body = body;
     }
 
-    public LocalDate getCreateAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreateAt(LocalDate createAt) {
-        this.createdAt = createAt;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
     public LocalDate getUpdatedAt() {
