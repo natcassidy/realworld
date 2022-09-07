@@ -18,7 +18,7 @@ public class ArticleService {
         return articleDAO.findAll();
     }
 
-    public Optional<Article> findArticleById(int id) {
+    public Optional<Article> findArticleById(UUID id) {
         return articleDAO.findById(id);
     }
 
@@ -30,7 +30,7 @@ public class ArticleService {
         articleDAO.save(article);
     }
 
-    public void deleteArticle(int id) {
+    public void deleteArticle(UUID id) {
         articleDAO.deleteById(id);
     }
 }

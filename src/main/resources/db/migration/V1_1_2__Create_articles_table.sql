@@ -1,6 +1,6 @@
-CREATE TABLE "article" (
+CREATE TABLE "articles" (
 
-    "article_id" int PRIMARY KEY,
+    "article_id" uuid NOT NULL,
     "slug" varchar(50) NOT NULL,
     "username" varchar(50) NOT NULL,
     "title" varchar(50) NOT NULL,
@@ -10,6 +10,6 @@ CREATE TABLE "article" (
     "updated_at" timestamp,
     "favorited" boolean,
     "favorites_count" int,
-
-    FOREIGN KEY ("username") REFERENCES "author" ("username")
+    PRIMARY KEY ("article_id"),
+    FOREIGN KEY ("username") REFERENCES "authors" ("username")
 ) ;

@@ -1,13 +1,14 @@
-CREATE TABLE "comment" (
+CREATE TABLE "comments" (
 
-    "comment_id" int NOT NULL,
+    "comment_id" uuid NOT NULL,
     "username" varchar(50) NOT NULL,
-    "article_id" int NOT NULL,
+    "article_id" uuid NOT NULL,
     "body" text,
     "created_at" timestamp NOT NULL,
     "updated_at" timestamp,
 
-    FOREIGN KEY ("username") REFERENCES "author" ("username"),
-    FOREIGN KEY ("article_id") REFERENCES "article" ("article_id")
+    PRIMARY KEY ("comment_id"),
+    FOREIGN KEY ("username") REFERENCES "authors" ("username"),
+    FOREIGN KEY ("article_id") REFERENCES "articles" ("article_id")
 
 ) ;

@@ -4,14 +4,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "articles")
 public class Article {
     @Id
-    private int article_id;
+    private UUID articleId;
     private String slug;
     private String username;
     private String title;
@@ -25,17 +27,17 @@ public class Article {
     public Article() {
     }
 
-    public Article(int article_id,
-                   String slug,
-                   String username,
-                   String title,
-                   String description,
-                   String body,
-                   LocalDate createdAt,
-                   LocalDate updatedAt,
-                   boolean favorited,
-                   int favorites_count) {
-        this.article_id = article_id;
+    public Article(UUID articleID,
+                String slug,
+                String username,
+                String title,
+                String description,
+                String body,
+                LocalDate createdAt,
+                LocalDate updatedAt,
+                boolean favorited,
+                int favorites_count) {
+        this.articleId = articleID;
         this.slug = slug;
         this.username = username;
         this.title = title;
@@ -47,12 +49,12 @@ public class Article {
         this.favorites_count = favorites_count;
     }
 
-    public int getArticle_id() {
-        return article_id;
+    public UUID getArticleId() {
+        return articleId;
     }
 
-    public void setArticle_id(int article_id) {
-        this.article_id = article_id;
+    public void setArticleId(UUID articleId) {
+        this.articleId = articleId;
     }
 
     public String getSlug() {

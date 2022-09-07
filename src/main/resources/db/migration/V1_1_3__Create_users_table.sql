@@ -6,5 +6,5 @@ CREATE TABLE "users" (
     "bio" varchar(256),
     "image" varchar(256),
 
-    FOREIGN KEY ("username") REFERENCES "author" ("username")
+    FOREIGN KEY ("username") REFERENCES "authors" ("username")
 ) ;

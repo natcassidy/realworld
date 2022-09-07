@@ -1,4 +1,6 @@
-CREATE TABLE "author" (
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE "authors" (
 
     "username" varchar(50) NOT NULL PRIMARY KEY,
     "following" boolean NOT NULL,

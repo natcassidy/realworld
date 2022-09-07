@@ -24,7 +24,7 @@ class ArticleDAOTest {
     @Test
     void itShouldSaveArticle() {
         // Given
-        Integer articleId = 1;
+        UUID articleId = UUID.randomUUID();
         Article article = new Article(
                 articleId,
                 "slug",
@@ -38,18 +38,17 @@ class ArticleDAOTest {
                 0
                 );
         // When
-        underTest.save(article);
+        Article savedArticle = underTest.save(article);
 
-        Optional<Article> articleFound = underTest.findById(articleId);
         // Then
-        assertTrue(articleFound.isPresent());
-//        assertTrue(articleFound.equals(article));
+        assertThat(savedArticle.getDescription()).isEqualTo(article.getDescription());
+        assertThat(savedArticle.getArticleId()).isInstanceOf(UUID.class);
     }
 
     @Test
     void itShouldFindArticleById() {
         // Given
-        Integer articleId = 1;
+        UUID articleId = UUID.randomUUID();
         Article article = new Article(
                 articleId,
                 "slug",
@@ -69,7 +68,7 @@ class ArticleDAOTest {
         assertThat(articleFound)
                 .isPresent()
                 .hasValueSatisfying(a -> {
-                    assertThat(a.getArticle_id()).isEqualTo(article.getArticle_id());
+                    assertThat(a.getArticleId()).isEqualTo(article.getArticleId());
                     assertThat(a.getDescription()).isEqualTo(article.getDescription());
                     assertThat(a.getCreatedAt()).isEqualTo(article.getCreatedAt());
                 });
@@ -78,8 +77,10 @@ class ArticleDAOTest {
     @Test
     void itShouldFindAllArticles() {
 
+        UUID articleId = UUID.randomUUID();
+        UUID articleId2 = UUID.randomUUID();
         Article article = new Article(
-                1,
+                articleId,
                 "slug",
                 "username",
                 "title",
@@ -92,7 +93,7 @@ class ArticleDAOTest {
         );
 
         Article article2 = new Article(
-                2,
+                articleId2,
                 "slug2",
                 "username",
                 "title2",
@@ -112,11 +113,11 @@ class ArticleDAOTest {
         // Then
 
         //article 1
-        assertThat(allArticles.get(0).getArticle_id()).isEqualTo(article.getArticle_id());
+        assertThat(allArticles.get(0).getArticleId()).isEqualTo(article.getArticleId());
         assertThat(allArticles.get(0).getDescription()).isEqualTo(article.getDescription());
         assertThat(allArticles.get(0).getCreatedAt()).isEqualTo(article.getCreatedAt());
         // article 2
-        assertThat(allArticles.get(1).getArticle_id()).isEqualTo(article2.getArticle_id());
+        assertThat(allArticles.get(1).getArticleId()).isEqualTo(article2.getArticleId());
         assertThat(allArticles.get(1).getDescription()).isEqualTo(article2.getDescription());
         assertThat(allArticles.get(1).getCreatedAt()).isEqualTo(article2.getCreatedAt());
 
@@ -126,7 +127,7 @@ class ArticleDAOTest {
     @Test
     void itShouldDeleteArticleById() {
         // Given
-        Integer articleId = 1;
+        UUID articleId = UUID.randomUUID();
         Article article = new Article(
                 articleId,
                 "slug",
@@ -146,13 +147,13 @@ class ArticleDAOTest {
         assertThat(articleFound)
                 .isPresent()
                 .hasValueSatisfying(a -> {
-                    assertThat(a.getArticle_id()).isEqualTo(article.getArticle_id());
+                    assertThat(a.getArticleId()).isEqualTo(article.getArticleId());
                     assertThat(a.getDescription()).isEqualTo(article.getDescription());
                     assertThat(a.getCreatedAt()).isEqualTo(article.getCreatedAt());
                 });
 
-        underTest.deleteById(1);
-        Optional<Article> articleFound2 = underTest.findById(1);
+        underTest.deleteById(articleId);
+        Optional<Article> articleFound2 = underTest.findById(articleId);
 
         assertThat(articleFound2)
                 .isNotPresent();

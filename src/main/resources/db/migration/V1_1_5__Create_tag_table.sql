@@ -1,9 +1,10 @@
-CREATE TABLE "tag" (
+CREATE TABLE "tags" (
 
-    "tag_id" int NOT NULL PRIMARY KEY,
-    "article_id" int NOT NULL,
+    "tag_id" uuid NOT NULL,
+    "article_id" uuid NOT NULL,
     "description" varchar(50) NOT NULL,
 
-    FOREIGN KEY ("article_id") REFERENCES "article" ("article_id")
+    PRIMARY KEY ("tag_id"),
+    FOREIGN KEY ("article_id") REFERENCES "articles" ("article_id")
 
 ) ;

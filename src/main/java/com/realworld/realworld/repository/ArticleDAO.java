@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ArticleDAO extends JpaRepository<Article, Integer> {
+public interface ArticleDAO extends JpaRepository<Article, UUID> {
 
 }
